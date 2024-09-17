@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Video Controls</title>
+    <style>
+        /* Стили для видео с отступами */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000; /* Темный фон для более приятного просмотра */
+            overflow: hidden; /* Убирает скроллбар */
+        }
+
+        video {
+            width: 90vw; /* Ширина 90% от ширины экрана */
+            height: 90vh; /* Высота 90% от высоты экрана */
+            object-fit: contain; /* Видео будет вписываться, сохраняя пропорции */
+            background-color: #000; /* Черный фон вокруг видео */
+            border: none; /* Убирает границы */
+        }
+
+        #fullscreen-button, #play-pause-button {
+            position: absolute;
+            top: 10px;
+            background-color: #444;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 10; /* Убедитесь, что кнопки поверх видео */
+        }
+
+        #play-pause-button {
+            right: 100px; /* Позиционирование кнопки паузы */
+        }
+
+        #fullscreen-button {
+            right: 10px; /* Позиционирование кнопки полноэкранного режима */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Встроенное видео с выключенным звуком и без встроенных элементов управления -->
+    <video id="video" autoplay muted loop playsinline>
+        <source src="https://github.com/Amachono/.mp4/raw/main/VID-20240815-WA0000.mp4" type="video/mp4">
+        Ваш браузер не поддерживает элемент <code>video</code>.
+    </video>
+
+    <!-- Кнопка для переключения в полноэкранный режим -->
+    <button id="fullscreen-button">Fullscreen</button>
+
+    <!-- Кнопка для воспроизведения/паузы -->
+    <button id="play-pause-button">Play</button>
+
+    <script>
+        const video = document.getElementById('video');
+        const fullscreenButton = document.getElementById('fullscreen-button');
+        const playPauseButton = document.getEleentById('play-pause-button');
+
+        fullscreenButton.addEventListener('click', () => {
+            if (document.fullscreenElement) {
+                document.exitFullscreen();
+            } else {
+                video.requestFullscreen();
+            }
+        });
+
+        playPauseButton.addEventListener('click', () => {
+            if (video.paused) {
+                video.play();
+                playPauseButton.textContent = 'Pause';
+            } else {
+                video.pause();
+                playPauseButton.textContent = 'Play';
+            }
+        });
+    </script>
+
+</body>
+</html>
